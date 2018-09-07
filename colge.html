@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <title>Multirisk</title>
+  <link href="css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+  <script src="js/jquery-1.10.2.js"></script>
+  <script src="js/jquery-ui-1.10.4.custom.js"></script>
+  <script src="colge.js"></script>
+  <style>
+  body{
+		font: 80% "Trebuchet MS", sans-serif;
+		margin: 50px;
+	}
+  div .advice {
+    font: 120.5% "Trebuchet MS", sans-serif;
+  }
+  #advice_list { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+  #advice_list td { background: #a6c9e2;  margin: 3px; padding: 0.4em; font-size: 1em; height: 45px; }
+  #advice_list td.no_intervention { background: #79AF79;  margin: 3px; padding: 0.4em; font-size: 1em; height: 45px; }
+  #advice_list td.intervention { background: #FF1919;  margin: 3px; padding: 0.4em; font-size: 1em; height: 45px; }
+  #advice_list td.no_motivated { background: #FFA347;  margin: 3px; padding: 0.4em; font-size: 1em; height: 45px; }
+
+  #advice_list_legend { list-style-type: none; margin: 0; padding: 0; width: 90%; }
+  #advice_list_legend td { margin: 3px; padding: 0.4em; font-size: 0.8em; height: 15px; }
+  #advice_list_legend td.no_intervention { background: #79AF79;  margin: 3px; padding: 0.4em; font-size: 1em; height: 15px; }
+  #advice_list_legend td.intervention { background: #FF1919;  margin: 3px; padding: 0.4em; font-size: 1em; height: 15px; }
+  #advice_list_legend td.no_motivated { background: #FFA347;  margin: 3px; padding: 0.4em; font-size: 1em; height: 15px; }
+
+  .column {
+    width: 450px;
+    float: left;
+    padding-bottom: 100px;
+  }
+  .portlet {
+    margin: 0 1em 1em 0;
+    padding: 0.3em;
+  }
+  .portlet-header {
+    padding: 0.2em 0.3em;
+    margin-bottom: 0.5em;
+    position: relative;
+  }
+  .portlet-toggle {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -8px;
+  }
+  .portlet-content {
+    padding: 0.4em;
+  }
+  .portlet-placeholder {
+    border: 1px dotted black;
+    margin: 0 1em 1em 0;
+    height: 50px;
+  }
+  </style>
+  <script>
+  $(function() {
+    /*$( ".column" ).sortable({
+      connectWith: ".column",
+      handle: ".portlet-header",
+      cancel: ".portlet-toggle",
+      placeholder: "portlet-placeholder ui-corner-all"
+    });*/
+
+    $( ".portlet" )
+      .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+      .find( ".portlet-header" )
+        .addClass( "ui-widget-header ui-corner-all" )
+        //.prepend( "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
+
+/*    $( ".portlet-toggle" ).click(function() {
+      var icon = $( this );
+      icon.toggleClass( "ui-icon-minusthick ui-icon-plusthick" );
+      icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
+    });
+*/
+  });
+  </script>
+</head>
+<body>
+
+
+<h1><label id="l_main_title">main_title</label></h1>
+
+<div class="column">
+
+  <div class="portlet">
+    <div class="portlet-header"><label id="l_covariates">covariates</label></div>
+    <div class="portlet-content">
+      <label id="l_age">age</label>:
+      <input id="age_value" name="age_value" /> <br />
+
+      <div id="smoking">
+      <br />
+      <label id="l_smoking">smoking:</label><br />
+      <input type="radio" id="smoking_no" name="smoking" /><label id="l_smoking_no">No</label>
+      <input type="radio" id="smoking_yes" name="smoking"/><label id="l_smoking_yes">Yes</label><br />
+      </div>
+
+      <div id="diabetes">
+      <br />
+      <label id="l_diabetes">diabetes:</label><br />
+      <input type="radio" id="diabetes_no" name="diabetes" /><label id="l_diabetes_no">No</label>
+      <input type="radio" id="diabetes_yes" name="diabetes"/><label id="l_diabetes_yes">Yes</label><br />
+      </div>
+
+      <div id="cv_history">
+      <br />
+      <label id="l_cv_history">cv_history:</label><br />
+      <input type="radio" id="cv_history_no" name="cv_history" /><label id="l_cv_history_no">No</label>
+      <input type="radio" id="cv_history_yes" name="cv_history"/><label id="l_cv_history_no">Yes</label><br />
+      </div>
+
+      <div id="sex">
+      <br />
+      <label id="l_sex">sex:</label><br />
+      <input type="radio" id="sex_female" name="sex" /><label id="l_sex_female">female</label>
+      <input type="radio" id="sex_male" name="sex"/><label id="l_sex_male">male</label><br />
+      </div>
+
+      <div id="htn">
+      <br />
+      <label id="l_htn">htn:</label><br />
+      <input type="radio" id="htn_no" name="htn" /><label id="l_htn_no">No</label>
+      <input type="radio" id="htn_yes" name="htn"/><label id="l_htn_yes">Yes</label><br />
+      </div>
+
+      <div id="colldl">
+      <br />
+      <label id="l_colldl">colldl</label>:
+      <input id="colldl_value" name="colldl_value" /> <br />
+      </div>
+
+      <div id="ami">
+      <br />
+      <label id="l_ami">ami:</label><br />
+      <input type="radio" id="ami_no" name="ami" /><label id="l_ami_no">No</label>
+      <input type="radio" id="ami_yes" name="ami"/><label id="l_ami_yes">Yes</label><br />
+      </div>
+
+      <div id="ap">
+      <br />
+      <label id="l_ap">ap:</label><br />
+      <input type="radio" id="ap_no" name="ap" /><label id="l_ap_no">No</label>
+      <input type="radio" id="ap_yes" name="ap"/><label id="l_ap_yes">Yes</label><br />
+      </div>
+
+      <div id="progressive">
+      <br />
+      <label id="l_progressive">progressive:</label><br />
+      <input type="radio" id="progressive_no" name="progressive" /><label id="l_progressive_no">No</label>
+      <input type="radio" id="progressive_yes" name="progressive"/><label id="l_progressive_yes">Yes</label><br />
+      </div>
+
+      <div id="recent">
+      <br />
+      <label id="l_recent">recent:</label><br />
+      <input type="radio" id="recent_no" name="recent" /><label id="l_recent_no">No</label>
+      <input type="radio" id="recent_yes" name="recent"/><label id="l_recent_yes">Yes</label><br />
+      </div>
+
+      <div id="polivascular">
+      <br />
+      <label id="l_polivascular">polivascular:</label><br />
+      <input type="radio" id="polivascular_no" name="polivascular" /><label id="l_polivascular_no">No</label>
+      <input type="radio" id="polivascular_yes" name="polivascular"/><label id="l_polivascular_yes">Yes</label><br />
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<button id="l_calculate_risk" >calculate_risk</button>
+<button id="l_clean_button" >clean_button</button><br /><br />
+
+<div id="result" class="result"></div>
+
+<div style="position: absolute; top: 15px;  left: 15px; font-size: 1.1em; ">&copy; 2018 IDIAP Jordi Gol</div>
+</body>
+</html>
