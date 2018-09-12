@@ -84,6 +84,32 @@ function refresh_covariates(){
   return '-1';
 }
 
+function calculate_risk(){
+  x_age = Number($('#age_value').val());
+  x_ami = Number($('#ami_yes').prop('checked'));
+  x_ap = Number($('#ap_yes').prop('checked'));
+  x_progressive = Number($('#progressive_yes').prop('checked'));
+  x_polivascular = Number($('#polivascular_yes').prop('checked'));
+  x_recent = Number($('#recent_yes').prop('checked'));
+  x_diabetes = Number($('#diabetes_yes').prop('checked'));
+  x_smoking = Number($('#smoking_yes').prop('checked'));
+  x_male = Number($('#sex_male').prop('checked'));
+  x_htn = Number($('#htn_yes').prop('checked'));
+  x_colldl = Number($('#colldl_value').val());
+  x_cv = Number($('#cv_history_yes').prop('checked'));
+
+  if(x_cv == 1){
+    y_yes = 0.018 * x_age + 0.425 * x_ami + 0.318 * x_ap + 0.426 * x_progressive + 0.603 * x_polivascular + 0.442 * x_diabetes + 0.438 * x_smoking;
+    risk = 100 * (1 - Math.pow(0.94469454, Math.exp(y_yes)));
+  }
+  if(x_cv == 0){
+    y_no = 0.046 * x_age + 0.525 * x_male + 0.576 * x_diabetes + 0.485 * x_htn + 0.657 * x_smoking + 0.0028 * x_colldl;
+    risk = 100 * (1 - Math.pow(0.999094171, Math.exp(y_no)));
+  }
+
+  return risk;
+}
+
 function uncheck_form(){
   $('#cv_history_no').prop('checked', false);
   $('#cv_history_yes').prop('checked', false);
@@ -135,6 +161,12 @@ function iniUI(){
   }
 
   translate_labels();
+
+  $('#l_calculate_risk').click(function() {
+    console.log("calculate risk");
+    risk = Math.round(calculate_risk());
+    $('#result').html('CV risk at 5 years: ' + risk + '%');
+  });
 
   $('#l_clean_button').click(function() {
     console.log("clicked");
