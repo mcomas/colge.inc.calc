@@ -99,8 +99,8 @@ function calculate_risk(){
   x_cv = Number($('#cv_history_yes').prop('checked'));
 
   if(x_cv == 1){
-    y_yes = 0.018 * x_age + 0.425 * x_ami + 0.318 * x_ap + 0.426 * x_progressive + 0.603 * x_polivascular + 0.442 * x_diabetes + 0.438 * x_smoking;
-    risk = 100 * (1 - Math.pow(0.94469454, Math.exp(y_yes)));
+    y_yes = 0.012 * x_age + 0.335 * x_ami + 0.501 * x_progressive + 0.617 * x_recent + 0.375 * x_polivascular + 0.441 * x_diabetes + 0.445 * x_smoking;
+    risk = 100 * (1 - Math.pow(0.911628151, Math.exp(y_yes)));
   }
   if(x_cv == 0){
     y_no = 0.046 * x_age + 0.525 * x_male + 0.576 * x_diabetes + 0.485 * x_htn + 0.657 * x_smoking + 0.0028 * x_colldl;
@@ -111,6 +111,9 @@ function calculate_risk(){
 }
 
 function uncheck_form(){
+  $('#age_value').val('');
+  $('#colldl_value').val('');
+
   $('#cv_history_no').prop('checked', false);
   $('#cv_history_yes').prop('checked', false);
 
@@ -137,6 +140,7 @@ function uncheck_form(){
   $('#advice').dialog("close");
   $('#cv_risk_three_months').dialog("close");
 
+  $('#result').html('');
   refreshUI();
 }
 
