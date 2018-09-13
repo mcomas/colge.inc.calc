@@ -19,7 +19,6 @@ lang['covariates'] = {'title' : 'Covariates',
                       'l_smoking' : 'Current smoker',
                       'l_colldl' : 'LDL cholesterol (mg/dL)',
                       'l_ami' : 'Acute miocardial infarction',
-                      'l_ap' : 'Peripheral artery disease',
                       'l_progressive' : 'CV progressive',
                       'l_recent' : 'CV recent',
                       'l_polivascular' : 'CV polivascular'};
@@ -52,7 +51,6 @@ function refresh_covariates(){
     $('#htn').hide();
     $('#colldl').hide();
     $('#ami').hide();
-    $('#ap').hide();
     $('#progressive').hide();
     $('#recent').hide();
     $('#polivascular').hide();
@@ -63,7 +61,6 @@ function refresh_covariates(){
     $('#htn').show();
     $('#colldl').show();
     $('#ami').hide();
-    $('#ap').hide();
     $('#progressive').hide();
     $('#recent').hide();
     $('#polivascular').hide();
@@ -74,7 +71,6 @@ function refresh_covariates(){
     $('#htn').hide();
     $('#colldl').hide();
     $('#ami').show();
-    $('#ap').show();
     $('#progressive').show();
     $('#recent').show();
     $('#polivascular').show();
@@ -87,7 +83,6 @@ function refresh_covariates(){
 function calculate_risk(){
   x_age = Number($('#age_value').val());
   x_ami = Number($('#ami_yes').prop('checked'));
-  x_ap = Number($('#ap_yes').prop('checked'));
   x_progressive = Number($('#progressive_yes').prop('checked'));
   x_polivascular = Number($('#polivascular_yes').prop('checked'));
   x_recent = Number($('#recent_yes').prop('checked'));
@@ -128,8 +123,6 @@ function uncheck_form(){
   $('#smoking_yes').prop('checked', false);
   $('#ami_no').prop('checked', false);
   $('#ami_yes').prop('checked', false);
-  $('#ap_no').prop('checked', false);
-  $('#ap_yes').prop('checked', false);
   $('#progressive_no').prop('checked', false);
   $('#progressive_yes').prop('checked', false);
   $('#recent_no').prop('checked', false);
