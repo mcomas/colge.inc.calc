@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <title>Multirisk</title>
+  <link href="css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+  <script src="js/jquery-1.10.2.js"></script>
+  <script src="js/jquery-ui-1.10.4.custom.js"></script>
+  <script src="usrgi_salut.js"></script>
+  <style>
+  body{
+		font: 80% "Trebuchet MS", sans-serif;
+		margin: 50px;
+	}
+  div .advice {
+    font: 120.5% "Trebuchet MS", sans-serif;
+  }
+  #advice_list { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+  #advice_list td { background: #a6c9e2;  margin: 3px; padding: 0.4em; font-size: 1em; height: 45px; }
+  #advice_list td.no_intervention { background: #79AF79;  margin: 3px; padding: 0.4em; font-size: 1em; height: 45px; }
+  #advice_list td.intervention { background: #FF1919;  margin: 3px; padding: 0.4em; font-size: 1em; height: 45px; }
+  #advice_list td.no_motivated { background: #FFA347;  margin: 3px; padding: 0.4em; font-size: 1em; height: 45px; }
+
+  #advice_list_legend { list-style-type: none; margin: 0; padding: 0; width: 90%; }
+  #advice_list_legend td { margin: 3px; padding: 0.4em; font-size: 0.8em; height: 15px; }
+  #advice_list_legend td.no_intervention { background: #79AF79;  margin: 3px; padding: 0.4em; font-size: 1em; height: 15px; }
+  #advice_list_legend td.intervention { background: #FF1919;  margin: 3px; padding: 0.4em; font-size: 1em; height: 15px; }
+  #advice_list_legend td.no_motivated { background: #FFA347;  margin: 3px; padding: 0.4em; font-size: 1em; height: 15px; }
+
+  .column {
+    width: 450px;
+    float: left;
+    padding-bottom: 100px;
+  }
+  .portlet {
+    margin: 0 1em 1em 0;
+    padding: 0.3em;
+  }
+  .portlet-header {
+    padding: 0.2em 0.3em;
+    margin-bottom: 0.5em;
+    position: relative;
+  }
+  .portlet-toggle {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -8px;
+  }
+  .portlet-content {
+    padding: 0.4em;
+  }
+  .portlet-placeholder {
+    border: 1px dotted black;
+    margin: 0 1em 1em 0;
+    height: 50px;
+  }
+  </style>
+  <script>
+  $(function() {
+    /*$( ".column" ).sortable({
+      connectWith: ".column",
+      handle: ".portlet-header",
+      cancel: ".portlet-toggle",
+      placeholder: "portlet-placeholder ui-corner-all"
+    });*/
+
+    $( ".portlet" )
+      .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+      .find( ".portlet-header" )
+        .addClass( "ui-widget-header ui-corner-all" )
+        //.prepend( "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
+
+/*    $( ".portlet-toggle" ).click(function() {
+      var icon = $( this );
+      icon.toggleClass( "ui-icon-minusthick ui-icon-plusthick" );
+      icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
+    });
+*/
+  });
+  </script>
+</head>
+<body>
+
+<!--
+<div id="dialog" title="Basic dialog">
+  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+</div>
+-->
+<h1><label id="l_main_title">algorisme_multirisc</label></h1>
+
+<button id="l_intervention_button" >intervention</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-->
+<button id="l_clean_button" >clean</button><br /><br />
+<div id="advice" class="advice"></div>
+
+<div id="cv_risk_three_months"><br />
+  <label id="l_cv_risk_three_months">cv_risk_three_months:</label><br />
+  <input type="radio" id="cv_risk_three_months_yes" name="cv_risk_three_months" />
+  <label id="l_cv_risk_three_months_yes">yes</label><br />
+  <input type="radio" id="cv_risk_three_months_no" name="cv_risk_three_months"/>
+  <label id="l_cv_risk_three_months_no">no</label><br /><br />
+  <div id='cv_risk_three_months_output'></div>
+</div>
+
+<div class="column">
+
+  <div class="portlet">
+    <div class="portlet-header"><label id="l_smoking">tabac</label></div>
+    <div class="portlet-content">
+      <div id="smoking_condition">
+      <label id="l_smoking_condition">smoking_condition</label>:<br />
+      <input type="radio" id="smoking_condition_non_smoker" name="smoking_condition" /><label id="l_smoking_condition_non_smoker">non_smoker</label>
+      <input type="radio" id="smoking_condition_ex_smoker" name="smoking_condition"/><label id="l_smoking_condition_ex_smoker">ex_smoker</label>
+      <input type="radio" id="smoking_condition_smoker" name="smoking_condition"/><label id="l_smoking_condition_smoker">smoker</label>
+      </div>
+      <br />
+      <div id="smoking_prochaska">
+      <label id="l_smoking_prochaska">smoking_prochaska:</label><br />
+      <input type="radio" id="smoking_prochaska_ready" name="smoking_prochaska" /><label id="l_smoking_prochaska_ready">ready</label><br />
+      <input type="radio" id="smoking_prochaska_not_ready" name="smoking_prochaska"/><label id="l_smoking_prochaska_not_ready">not_ready</label><br />
+      </div>
+      <br />
+      <div id="smoking_dependence">
+      <label id="l_smoking_dependence">smoking_dependence:</label><br />
+      <input type="radio" id="smoking_dependence_high" name="smoking_dependence" /><label id="l_smoking_dependence_high">higher than 3</label><br />
+      <input type="radio" id="smoking_dependence_low" name="smoking_dependence"/><label id="l_smoking_dependence_low">lower than 3</label><br />
+      </div>
+    </div>
+  </div>
+
+  <div class="portlet">
+    <div class="portlet-header"><label id="l_diet">dieta</label></div>
+    <div class="portlet-content">
+      <div id="diet_condition">
+      <label id="l_diet_condition">diet_condition:</label><br />
+      <input type="radio" id="diet_condition_adhered" name="diet_condition" /><label id="l_diet_condition_adhered">adhered</label><br />
+      <input type="radio" id="diet_condition_not_adhered" name="diet_condition"/><label id="l_diet_condition_not_adhered">not_adhered</label><br />
+      </div>
+      <br />
+      <div id="diet_prochaska">
+      <label id="l_diet_prochaska">diet_prochaska:</label><br />
+      <input type="radio" id="diet_prochaska_ready" name="diet_prochaska" /><label id="l_diet_prochaska_ready">ready</label><br />
+      <input type="radio" id="diet_prochaska_not_ready" name="diet_prochaska"/><label id="l_diet_prochaska_not_ready">not_ready</label><br />
+      </div>
+    </div>
+  </div>
+
+  <div class="portlet">
+    <div class="portlet-header"><label id="l_activity">fisic</label></div>
+    <div class="portlet-content">
+      <div id="activity_condition">
+      <label id="l_activity_condition">activity_condition:</label><br />
+      <input type="radio" id="activity_condition_active" name="activity_condition" /><label id="l_activity_condition_active">active</label><br />
+      <input type="radio" id="activity_condition_sedentary" name="activity_condition"/><label id="l_activity_condition_sedentary">sedentary</label><br />
+      </div>
+      <br />
+      <div id="activity_prochaska">
+      <label id="l_activity_prochaska">activity_prochaska:</label><br />
+      <input type="radio" id="activity_prochaska_ready" name="activity_prochaska" /><label id="l_activity_prochaska_ready">ready</label><br />
+      <input type="radio" id="activity_prochaska_not_ready" name="activity_prochaska"/><label id="l_activity_prochaska_not_ready">not_ready</label><br />
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="column">
+
+  <div class="portlet">
+    <div class="portlet-header"><label id="l_depression">depresio</label></div>
+    <div class="portlet-content">
+      <div id="depression_phq9">
+      <label id="l_depression_phq9">depression_phq9:</label><br />
+      <input type="radio" id="depression_phq9_negative" name="depression_phq9" /><label id="l_depression_phq9_negative">negative</label><br />
+      <input type="radio" id="depression_phq9_positive" name="depression_phq9" /><label id="l_depression_phq9_positive">positive</label><br />
+      </div>
+      <br />
+      <div id="depression_2quest_predict">
+      <label id="l_depression_2quest_predict">depression_2quest_predict:</label><br />
+      <input type="radio" id="depression_2quest_predict_one_negative" name="depression_2quest_predict" /><label id="l_depression_2quest_predict_one_negative">one_negative</label><br />
+      <input type="radio" id="depression_2quest_predict_all_positive" name="depression_2quest_predict"/><label id="l_depression_2quest_predict_all_positive">all_positive</label><br />
+      </div>
+      <br />
+      <div id="depression_predict_algorithm">
+      <label id="l_depression_predict_algorithm">predict_algorithm:</label><br />
+      <input type="radio" id="depression_predict_algorithm_tenth_percentile" name="predict_algorithm" /><label id="l_depression_predict_algorithm_tenth_percentile">tenth_percentile</label><br />
+      <input type="radio" id="depression_predict_algorithm_tenthninety_percentile" name="predict_algorithm"/><label id="l_depression_predict_algorithm_tenthninety_percentile">tenthninety_percentile</label><br />
+	  <input type="radio" id="depression_predict_algorithm_ninety_percentile" name="predict_algorithm"/><label id="l_depression_predict_algorithm_ninety_percentile">ninety_percentile</label><br />
+      </div>
+    </div>
+  </div>
+
+  <div class="portlet">
+    <div class="portlet-header"><label id="l_cv_risk">cardio</label></div>
+    <div class="portlet-content">
+<!--      <div style="float:left;"><button id="l_follow_up_3_months">follow_up_3_months</button></div>
+      <br /><br /> -->
+      <table width="100%">
+      <tr>
+      <td>
+      <div id="cv_risk_antecedent">
+      <label id="l_cv_risk_antecedent">cv_risk_antecedent:</label><br />
+      <input type="radio" id="cv_risk_antecedent_with" name="cv_risk_antecedent" /><label id="l_cv_risk_antecedent_with">with</label><br />
+      <input type="radio" id="cv_risk_antecedent_without" name="cv_risk_antecedent" /><label id="l_cv_risk_antecedent_without">without</label><br />
+      </div>
+      </td>
+      <td  width="40%">
+      <div id="cv_risk_statin_therapy">
+      <label id="l_cv_risk_statin_therapy">cv_risk_statin_therapy:</label><br />
+      <input type="radio" id="cv_risk_statin_therapy_no" name="cv_risk_statin_therapy" /><label id="l_cv_risk_statin_therapy_no">no</label><br />
+      <input type="radio" id="cv_risk_statin_therapy_yes" name="cv_risk_statin_therapy" /><label id="l_cv_risk_statin_therapy_yes">yes</label><br />
+      </div>
+      </td>
+      </tr>
+      </table>
+
+      <br />
+      <div id="cv_risk_coltot">
+      <label id="l_cv_risk_coltot">cv_risk_coltot:</label><br />
+      <input type="radio" id="cv_risk_coltot_low" name="cv_risk_coltot" /><label id="l_cv_risk_coltot_low">low</label><br />
+      <input type="radio" id="cv_risk_coltot_high" name="cv_risk_coltot" /><label id="l_cv_risk_coltot_high">high</label><br />
+      </div>
+      <br />
+      <div id="cv_risk_colldl">
+      <label id="l_cv_risk_colldl">cv_risk_colldl:</label><br />
+      <input type="radio" id="cv_risk_colldl_low" name="cv_risk_colldl" /><label id="l_cv_risk_colldl_low">low</label><br />
+      <input type="radio" id="cv_risk_colldl_high" name="cv_risk_colldl" /><label id="l_cv_risk_colldl_high">high</label><br />
+      </div>
+      <br />
+      <div id="cv_risk_regicor_score">
+      <label id="l_cv_risk_regicor_score">cv_risk_regicor_score:</label><br />
+      <input type="radio" id="cv_risk_regicor_score_high" name="cv_risk_regicor_score" /><label id="l_cv_risk_regicor_score_high">high</label><br />
+      <input type="radio" id="cv_risk_regicor_score_low" name="cv_risk_regicor_score"/><label id="l_cv_risk_regicor_score_low">low</label><br />
+      </div>
+
+      <br />
+      <table width="100%">
+      <tr>
+      <td>
+      <div id="cv_risk_reason">
+      <label id="l_cv_risk_reason">cv_risk_reason:</label><br />
+      <input type="radio" id="cv_risk_reason_low" name="cv_risk_reason" /><label id="l_cv_risk_reason_low">low</label><br />
+      <input type="radio" id="cv_risk_reason_high" name="cv_risk_reason" /><label id="l_cv_risk_reason_high">high</label><br />
+      </div>
+      </td>
+      <td width="40%">
+      <div id="cv_risk_itb">
+      <label id="l_cv_risk_itb">cv_risk_itb:</label><br />
+      <input type="radio" id="cv_risk_itb_pathological" name="cv_risk_itb" /><label id="l_cv_risk_itb_pathological">pathological</label><br />
+      <input type="radio" id="cv_risk_itb_regular" name="cv_risk_itb"/><label id="l_cv_risk_itb_regular">regular</label><br />
+      </div>
+      </td>
+      </tr>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div style="position: absolute; top: 15px;  left: 15px; font-size: 1.1em; ">&copy; 2014 IDIAP Jordi Gol</div>
+</body>
+</html>

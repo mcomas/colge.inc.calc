@@ -2,175 +2,159 @@
 <html lang="ca">
 <head>
   <meta charset="utf-8" />
-  <title>Multirisk</title>
-  <link href="css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet">
-  <script src="js/jquery-1.10.2.js"></script>
-  <script src="js/jquery-ui-1.10.4.custom.js"></script>
+  <title>SIDIAP-FHP</title>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>  
   <script src="colge.js"></script>
-  <style>
-  body{
-		font: 80% "Trebuchet MS", sans-serif;
-		margin: 50px;
-	}
-  div .advice {
-    font: 120.5% "Trebuchet MS", sans-serif;
-  }
-  #advice_list { list-style-type: none; margin: 0; padding: 0; width: 100%; }
-  #advice_list td { background: #a6c9e2;  margin: 3px; padding: 0.4em; font-size: 1em; height: 45px; }
-  #advice_list td.no_intervention { background: #79AF79;  margin: 3px; padding: 0.4em; font-size: 1em; height: 45px; }
-  #advice_list td.intervention { background: #FF1919;  margin: 3px; padding: 0.4em; font-size: 1em; height: 45px; }
-  #advice_list td.no_motivated { background: #FFA347;  margin: 3px; padding: 0.4em; font-size: 1em; height: 45px; }
-
-  #advice_list_legend { list-style-type: none; margin: 0; padding: 0; width: 90%; }
-  #advice_list_legend td { margin: 3px; padding: 0.4em; font-size: 0.8em; height: 15px; }
-  #advice_list_legend td.no_intervention { background: #79AF79;  margin: 3px; padding: 0.4em; font-size: 1em; height: 15px; }
-  #advice_list_legend td.intervention { background: #FF1919;  margin: 3px; padding: 0.4em; font-size: 1em; height: 15px; }
-  #advice_list_legend td.no_motivated { background: #FFA347;  margin: 3px; padding: 0.4em; font-size: 1em; height: 15px; }
-
-  .column {
-    width: 450px;
-    float: left;
-    padding-bottom: 100px;
-  }
-  .portlet {
-    margin: 0 1em 1em 0;
-    padding: 0.3em;
-  }
-  .portlet-header {
-    padding: 0.2em 0.3em;
-    margin-bottom: 0.5em;
-    position: relative;
-  }
-  .portlet-toggle {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    margin-top: -8px;
-  }
-  .portlet-content {
-    padding: 0.4em;
-  }
-  .portlet-placeholder {
-    border: 1px dotted black;
-    margin: 0 1em 1em 0;
-    height: 50px;
-  }
-  </style>
-  <script>
-  $(function() {
-    /*$( ".column" ).sortable({
-      connectWith: ".column",
-      handle: ".portlet-header",
-      cancel: ".portlet-toggle",
-      placeholder: "portlet-placeholder ui-corner-all"
-    });*/
-
-    $( ".portlet" )
-      .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
-      .find( ".portlet-header" )
-        .addClass( "ui-widget-header ui-corner-all" )
-        //.prepend( "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
-
-/*    $( ".portlet-toggle" ).click(function() {
-      var icon = $( this );
-      icon.toggleClass( "ui-icon-minusthick ui-icon-plusthick" );
-      icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
-    });
-*/
-  });
-  </script>
+<style>
+body{
+ background:#a8a8a8;
+ font-size:14px;
+ padding:0;
+ margin:0;
+}
+.panel-covariates {
+ padding:20px 20px 20px 20px;
+ background:#ccc; 
+ /*border-right:1px solid #676767; 
+ border-left:0px solid #676767;
+ border-bottom:1px solid #676767;*/
+}
+#l_main_title {
+ padding:50px 20px 50px 20px;
+}
+#l_main_title h4{
+ color:#fff;
+ font-size:30px;
+ font-weight:normal;
+}
+</style>
 </head>
 <body>
 
+<div class="container">
+	<div class="row">
+	    <div id="l_main_title"><h4>l_main_title</h4></div>
+	</div>
+	<div class="row">
+	<div class="col-md-8">
+	<!-- Begin COVARIATES -->
+	<div class="panel panel-primary">
+	    <div class="panel-heading">Covariates</div>
+            <div class="panel-covariates">	
+	    <div class="panel-body">
+		<div id="div_id_age" class="form-group required">
+		    <label id="l_age" class="control-label col-md-5  requiredField">l_age</label>
+		    <div class="controls col-md-7 ">
+			<input class="input-md  textinput textInput form-control" id="age_value" name="age_value" placeholder="Write age" style="margin-bottom: 10px" type="text" />
+		    </div>
+		</div>
+		
+		<div id="div_id_smoking" class="form-group required">
+		    <label id="l_smoking"  class="control-label col-md-5  requiredField">l_smoking</label>
+		    <div class="controls col-md-7 "  style="margin-bottom: 10px">
+			<label id="l_smoking_no" class="radio-inline"><input type="radio" name="smoking" id="smoking_no" style="margin-bottom: 10px">No</label>
+			<label id="l_smoking_yes" class="radio-inline"><input type="radio" name="smoking" id="smoking_yes" style="margin-bottom: 10px">Yes</label>
+		    </div>
+		</div>
+		
+		<div id="div_id_diabetes" class="form-group required">
+		    <label id="l_diabetes"  class="control-label col-md-5  requiredField">l_diabetes</label>
+		    <div class="controls col-md-7 "  style="margin-bottom: 10px">
+			<label id="l_diabetes_no" class="radio-inline"><input type="radio" name="diabetes" id="diabetes_no" style="margin-bottom: 10px">No</label>
+			<label id="l_diabetes_yes" class="radio-inline"> <input type="radio" name="diabetes" id="diabetes_yes" style="margin-bottom: 10px">Yes</label>
+		    </div>
+		</div>
 
-<h1><label id="l_main_title">main_title</label></h1>
+		<div id="div_id_cv_history" class="form-group required">
+		    <label id="l_cv_history"  class="control-label col-md-5  requiredField">l_cv_history</label>
+		    <div class="controls col-md-7 "  style="margin-bottom: 10px">
+			<label id="l_cv_history_no" class="radio-inline"><input type="radio" name="cv_history" id="cv_history_no" style="margin-bottom: 10px">No</label>
+			<label id="l_cv_history_yes" class="radio-inline"> <input type="radio" name="cv_history" id="cv_history_yes" style="margin-bottom: 10px">Yes</label>
+		    </div>
+		</div>
 
-<div class="column">
 
-  <div class="portlet">
-    <div class="portlet-header"><label id="l_covariates">covariates</label></div>
-    <div class="portlet-content">
-      <label id="l_age">age</label>:
-      <input id="age_value" name="age_value" /> <br />
+		<div id="div_id_sex" class="form-group required">
+		    <label id="l_sex"  class="control-label col-md-5  requiredField">l_sex</label>
+		    <div class="controls col-md-7 "  style="margin-bottom: 10px">
+			<label id="l_sex_female" class="radio-inline"><input type="radio" name="sex" id="sex_female" style="margin-bottom: 10px">l_sex_female</label>
+			<label id="l_sex_male" class="radio-inline"> <input type="radio" name="sex" id="sex_male" style="margin-bottom: 10px">l_sex_male</label>
+		    </div>
+		</div>
 
-      <div id="smoking">
-      <br />
-      <label id="l_smoking">smoking:</label><br />
-      <input type="radio" id="smoking_no" name="smoking" /><label id="l_smoking_no">No</label>
-      <input type="radio" id="smoking_yes" name="smoking"/><label id="l_smoking_yes">Yes</label><br />
-      </div>
+		<div id="div_id_htn" class="form-group required">
+		    <label id="l_htn"  class="control-label col-md-5  requiredField">l_htn</label>
+		    <div class="controls col-md-7 "  style="margin-bottom: 10px">
+			<label id="l_htn_no" class="radio-inline"><input type="radio" name="htn" id="htn_no" style="margin-bottom: 10px">No</label>
+			<label id="l_htn_yes" class="radio-inline"> <input type="radio" name="htn" id="htn_yes" style="margin-bottom: 10px">Yes</label>
+		    </div>
+		</div>
 
-      <div id="diabetes">
-      <br />
-      <label id="l_diabetes">diabetes:</label><br />
-      <input type="radio" id="diabetes_no" name="diabetes" /><label id="l_diabetes_no">No</label>
-      <input type="radio" id="diabetes_yes" name="diabetes"/><label id="l_diabetes_yes">Yes</label><br />
-      </div>
+		<div id="div_id_colldl" class="form-group required">
+		    <label id="l_colldl" class="control-label col-md-5  requiredField">l_colldl</label>
+		    <div class="controls col-md-7 ">
+			<input class="input-md  textinput textInput form-control" id="colldl_value" name="colldl_value" placeholder="Write colldl" style="margin-bottom: 10px" type="text" />
+		    </div>
+		</div>
 
-      <div id="cv_history">
-      <br />
-      <label id="l_cv_history">cv_history:</label><br />
-      <input type="radio" id="cv_history_no" name="cv_history" /><label id="l_cv_history_no">No</label>
-      <input type="radio" id="cv_history_yes" name="cv_history"/><label id="l_cv_history_no">Yes</label><br />
-      </div>
+		<div id="div_id_ami" class="form-group required">
+		    <label id="l_ami"  class="control-label col-md-5  requiredField">l_ami</label>
+		    <div class="controls col-md-7 "  style="margin-bottom: 10px">
+			<label id="l_ami_no" class="radio-inline"><input type="radio" name="ami" id="ami_no" style="margin-bottom: 10px">No</label>
+			<label id="l_ami_yes" class="radio-inline"> <input type="radio" name="ami" id="ami_yes" style="margin-bottom: 10px">Yes</label>
+		    </div>
+		</div>
 
-      <div id="sex">
-      <br />
-      <label id="l_sex">sex:</label><br />
-      <input type="radio" id="sex_female" name="sex" /><label id="l_sex_female">female</label>
-      <input type="radio" id="sex_male" name="sex"/><label id="l_sex_male">male</label><br />
-      </div>
+		<div id="div_id_progressive" class="form-group required">
+		    <label id="l_progressive"  class="control-label col-md-5  requiredField">l_progressive</label>
+		    <div class="controls col-md-7 "  style="margin-bottom: 10px">
+			<label id="l_progressive_no" class="radio-inline"><input type="radio" name="progressive" id="progressive_no" style="margin-bottom: 10px">No</label>
+			<label id="l_progressive_yes" class="radio-inline"> <input type="radio" name="progressive" id="progressive_yes" style="margin-bottom: 10px">Yes</label>
+		    </div>
+		</div>
 
-      <div id="htn">
-      <br />
-      <label id="l_htn">htn:</label><br />
-      <input type="radio" id="htn_no" name="htn" /><label id="l_htn_no">No</label>
-      <input type="radio" id="htn_yes" name="htn"/><label id="l_htn_yes">Yes</label><br />
-      </div>
+		<div id="div_id_recent" class="form-group required">
+		    <label id="l_recent"  class="control-label col-md-5  requiredField">l_recent</label>
+		    <div class="controls col-md-7 "  style="margin-bottom: 10px">
+			<label id="l_recent_no" class="radio-inline"><input type="radio" name="recent" id="recent_no" style="margin-bottom: 10px">No</label>
+			<label id="l_recent_yes" class="radio-inline"> <input type="radio" name="recent" id="recent_yes" style="margin-bottom: 10px">Yes</label>
+		    </div>
+		</div>
 
-      <div id="colldl">
-      <br />
-      <label id="l_colldl">colldl</label>:
-      <input id="colldl_value" name="colldl_value" /> <br />
-      </div>
+		<div id="div_id_polivascular" class="form-group required">
+		    <label id="l_polivascular"  class="control-label col-md-5  requiredField" data-toggle="tooltip" data-placement="bottom" title="Polivascular definition. <i>Whatever text</i>">l_polivascular</label>
+		    <div class="controls col-md-7 "  style="margin-bottom: 10px">
+			<label id="l_polivascular_no" class="radio-inline"><input type="radio" name="polivascular" id="polivascular_no" style="margin-bottom: 10px">No</label>
+			<label id="l_polivascular_yes" class="radio-inline"> <input type="radio" name="polivascular" id="polivascular_yes" style="margin-bottom: 10px">Yes</label>
+		    </div>
+		</div>
 
-      <div id="ami">
-      <br />
-      <label id="l_ami">ami:</label><br />
-      <input type="radio" id="ami_no" name="ami" /><label id="l_ami_no">No</label>
-      <input type="radio" id="ami_yes" name="ami"/><label id="l_ami_yes">Yes</label><br />
-      </div>
+		<div class="col-xs-12" style="height:30px;"></div>
 
-      <div id="progressive">
-      <br />
-      <label id="l_progressive">progressive:</label><br />
-      <input type="radio" id="progressive_no" name="progressive" /><label id="l_progressive_no">No</label>
-      <input type="radio" id="progressive_yes" name="progressive"/><label id="l_progressive_yes">Yes</label><br />
-      </div>
-
-      <div id="recent">
-      <br />
-      <label id="l_recent">recent:</label><br />
-      <input type="radio" id="recent_no" name="recent" /><label id="l_recent_no">No</label>
-      <input type="radio" id="recent_yes" name="recent"/><label id="l_recent_yes">Yes</label><br />
-      </div>
-
-      <div id="polivascular">
-      <br />
-      <label id="l_polivascular">polivascular:</label><br />
-      <input type="radio" id="polivascular_no" name="polivascular" /><label id="l_polivascular_no">No</label>
-      <input type="radio" id="polivascular_yes" name="polivascular"/><label id="l_polivascular_yes">Yes</label><br />
-      </div>
-
-    </div>
-  </div>
+		<div class="text-center">
+		    <button id="l_calculate_risk" class="btn btn-primary waves-effect waves-light">l_calculate_risk</button>
+		    <button id="l_clean_button"  class="btn btn-danger waves-effect waves-light">l_clean_button</button>
+		</div>
+	    </div>
+            </div>
+	</div>
+	<!-- End COVARIATES -->
+	</div>
+	<div class="col-md-4"><!-- Begin RESULTS -->
+        <div id="panel-result">
+	<div class="panel panel-info">
+	    <!--<div class="panel-heading">Results</div>-->
+	    <div class="panel-body" id="result" ></div>
+	</div>
+        </div>
+	</div><!-- End RESULTS -->
+	</div>
+	<div class="row">
+	    <div style="text-align: left; position: relative; top: 15px;  right: 15px; font-size: 1.1em; ">&copy; 2018 IDIAP Jordi Gol</div>
+	</div>
 </div>
 
-<button id="l_calculate_risk" >calculate_risk</button>
-<button id="l_clean_button" >clean_button</button><br /><br />
-
-<div id="result" class="result"></div>
-
-<div style="position: absolute; top: 15px;  left: 15px; font-size: 1.1em; ">&copy; 2018 IDIAP Jordi Gol</div>
 </body>
 </html>
