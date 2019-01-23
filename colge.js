@@ -16,6 +16,7 @@ lang1['global'] = {'l_main_title': "SIDIAP-FHP Score",
                   'l_desc_polivascular' : 'More than one vascular bed affected',
                   'l_desc_recent' : 'Last hospitalization less than one year from now',
                   'l_desc_progressive' : 'More than one episode of hospitalization due to that CVD',
+                  'l_instructions' : 'Instructions',
                   'desc_recent' : 'The last hospitalization was less than one year from now',
                   'desc_progressive' : 'More than one episode of hospitalization due to that CVD',
                   'desc_polivascular' : 'More than one vascular bed affected'};
@@ -36,6 +37,12 @@ lang1['covariates'] = {'title' : 'Covariates',
                       'l_progressive' : 'ASCVD progressive',
                       'l_recent' : 'ASCVD recent',
                       'l_polivascular' : 'ASCVD polyvascular'};
+lang1['instructions'] = '<h1>Instructions</h1><hr>';
+lang1['instructions'] += '<p>Familial hypercholesterolemia (FH) is an inherited autosomal dominant disorder associated with high incidence of atherosclerotic cardiovascular diseases (ASCVD). However, complications of FH are largely preventable by reducing risk factor levels. An accurate assessment of an individual’s cardiovascular risk would help to optimize the intensity of drug therapies and lifestyle management in this population.</p>';
+lang1['instructions'] += '<p>The SIDIAP-FHP score estimates the 5-year probability of presenting an atherosclerotic cardiovascular event (myocardial infarction, angina, ischemic stroke, or peripheral artery disease) in persons with FH phenotype*. <b>This risk should always be discussed with a physician</b>. For individuals aged 18 years or older with FH phenotype, this simple programme asks for some necessary information.</p>';
+lang1['instructions'] += '<p>For <b>those individuals who have never suffered a previous ASCVD</b>, the SIDIAP-FHP requires just 7 basic items of information about you: sex, age, smoker (yes or no), diabetic (yes or no), hypertension (yes or no), and blood low density lipoprotein concentration (LDL) (in mg/dL)</p>';
+lang1['instructions'] += '<p>For <b>those individuals with previous ASCVD</b>, the SIDIAP-FHP requires: age, diabetes (yes or no), smoking (yes or no), and characteristics of the previous disease: whether it was progressive (more than one episode of hospitalization due to that ASCVD) or not, recent (if last hospitalization was less than one year from now), polyvascular (if more than one vascular territory is affected), or included myocardial infarction.</p>';
+lang1['instructions'] += '<p style = "font-size: 10px;">* FH phenotype is defined as untreated LDL-C >230 mg/dL for 18- to 29-year-olds; >238 mg/dL for 30- to 39-year-olds; >260 mg/dL for 40- to 49-year-olds; and >255 mg/dL for participants older than 49 years.</p>';
 
 dictio['eng'] = lang1;
 
@@ -103,6 +110,9 @@ dictio['esp'] = lang3;
 
 function get_text(field, sub){
   return dictio[dictio.active][field][sub];
+}
+function get_instructions(){
+  return dictio[dictio.active]['instructions'];
 }
 
 var state = [];
@@ -272,7 +282,7 @@ function check_form(){
   }
 
   if(error){
-    $('#result').html("<b>Errors detected</b>. <br />Please, solve them in order to calculate the risk: <ul>" + error_message + "</ul>");
+    $('#result').html("<h1>Errors detected</h1><hr>Please, solve them in order to calculate the risk: <ul>" + error_message + "</ul>");
     $('#result').css("background-color", "#FF7777");
   }
   return !error;
@@ -341,6 +351,7 @@ round = function round(value, decimals) {
 }
 
 function iniUI(){
+  $('#result').hide();
   var tabs = ['covariates'];
   for(var i=0;i<tabs.length;i++){
     $("#l_" + tabs[i]).html(get_text(tabs[i], 'title'));
@@ -358,8 +369,11 @@ function iniUI(){
 	return false});
 
   $('#calculate_risk').click(function() {
-    $('#panel-result').show();
+    $('#result').show();
     $('#result').css("background-color", "white");
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $("#result").offset().top
+    }, 500);
     all_ok = check_form();
     if(!all_ok){
       console.log("error detected");
@@ -367,7 +381,7 @@ function iniUI(){
     }
     console.log("calculate risk");
     current_risk = round(calculate_risk(), 1);
-    message = 'ASCVD risk at 5 years: <b>' + current_risk + '%</b>.<br />';
+    message = '<h1>SIDIAP-FHP</h1><hr>ASCVD risk at 5 years: <b>' + current_risk + '%</b>.<br />';
     if(Number($('#smoking_yes').prop('checked')) == 1){
 
     }
@@ -406,6 +420,7 @@ function iniUI(){
   });
 
   $('#clean_button').click(function() {
+    $('#result').hide();
     console.log("clicked");
     uncheck_form();
   });
@@ -414,7 +429,15 @@ function iniUI(){
   $('#cv_history_no').change(refreshUI);
   $('#panel-result').hide();
   refreshUI();
-
+  $("#info_instructions").click(function(){
+	    //$("#info_text").slideToggle("slow");
+    $('#result').show();
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $("#result").offset().top
+    }, 500);
+    $('#result').css("background-color", "#fcf0ad");
+		$('#result').html(get_instructions());
+	});
 }
 
 $(document).ready(iniUI);

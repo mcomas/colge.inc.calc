@@ -7,207 +7,230 @@
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
   <script src="colge.js"></script>
-<style>
-body{
- background:#a8a8a8;
- font-size:14px;
- padding:0;
- margin:0;
-}
-.panel-covariates {
- padding:20px 20px 20px 20px;
- background:#ccc;
- /*border-right:1px solid #676767;
- border-left:0px solid #676767;
- border-bottom:1px solid #676767;*/
-}
-.description{
- font-size:11px;
- font-style: italic;
-}
-#main_title {
- padding:10px 20px 0px 20px;
- color:#fff;
- font-size:30px;
- font-weight:normal;
-}
-#main_subtitle {
- padding:0px 20px 30px 40px;
- color:#fff;
- font-size:20px;
- font-style: italic;
- font-weight:normal;
-}
-#logos {
- padding:0px 20px 20px 20px;
- text-align:left;
-}
-#language{padding:20px 0px 20px 0px;margin:0;}
-#language ul {float:left;list-style: none;margin:0;padding:0;height:24px;}
-#language ul li {height:10px; width:40px; padding:5px 0 0 20px;margin:0 0px;float: left;}
-#language ul li.current {text-decoration: underline;}
-#language a {padding:0 0 0 25px;margin:0 0px;color: #000;}
-#language a:hover {color: #fff; text-decoration: none;}
-#language ul li.current a:hover {color: #000; text-decoration: none;}
-#language a#lang_cat {background: url(resources/cat.jpg) 0 2px no-repeat;}
-#language a#lang_esp {background: url(resources/esp.jpg) 0 2px no-repeat;}
-#language a#lang_eng {background: url(resources/eng.jpg) 0 2px no-repeat;}
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  body{
+    background:#a8a8a8;
+    font-size:14px;
+    padding:0;
+    margin:0;
+  }
+  #main_title {
+    padding:10px 20px 0px 20px;
+    color:#fff;
+    font-size:30px;
+    font-weight:normal;
+  }
+  #main_subtitle {
+    padding:0px 20px 30px 40px;
+    color:#fff;
+    font-size:20px;
+    font-style: italic;
+    font-weight:normal;
+  }
+  #info_instructions {
+    padding:0px 10px 10px 0px;
+    text-align: right;
+    color:white;
+    font-weight:normal;
+    text-decoration: none;
+  }
+  #info_instructions a:hover {
+    color: #000;
+    text-decoration: none;
+  }
+  .panel-interface {
+    padding:20px 20px 20px 20px;
+    background:#ccc;
+    /*height: 500px;*/
+  }
+  .panel-covariates {
+    /*height: 350px;*/
+  }
+  #result {
+    height: 333px;
+    margin:9px 0 10px 0;background-color:white;border: 1px solid #666;overflow:auto;
+  }
+  #result h1 {
+    font-size:20px;
+    /*font-style: italic;*/
+  }
+  #result hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid black;
+    margin: 1em 0;
+    padding: 0;
+   }
+  .description{
+   font-size:11px;
+   font-style: italic;
+  }
+  /*.image-link{
+    padding:5px 5px 20px 20px;
+    height: 70px;
+    margin: 5;
+  }*/
+  #logos {
+   padding:20px 20px 20px 20px;
+   text-align:left;
+   margin: 5px;
+   height: 70px;
+  }
 </style>
 </head>
 <body>
 
-<div class="container">
-<!--<div class="row">
-<div id="language">
-<ul>
-<li class="lang_class"><a href="#" id="lang_cat"></a></li>
-<li class="lang_class"><a href="#" id="lang_esp"></a></li>
-<li class="lang_class current"><a href="#" id="lang_eng" class="lang_class"></a></li>
-</ul>
-</div>
-</div>-->
-	<div class="row">
-           <div id="main_title"><div id="l_main_title">l_main_title</div></div>
-	   <div id="main_subtitle"><div id="l_main_subtitle">l_main_subtitle</div></div>
-	</div>
-	<div class="row">
-	<div class="col-md-8">
-	<!-- Begin COVARIATES -->
-	<div class="panel panel-primary">
-	    <div class="panel-heading"><div id="l_covariates">l_covariates</div></div>
-            <div class="panel-covariates">
-	    <div class="panel-body">
-		<div id="div_id_age" class="form-group required">
-		    <label class="control-label col-md-6  requiredField"><div id="l_age">l_age</div></label>
-		    <div class="controls col-md-4 ">
-			<input class="input-md  textinput textInput form-control" id="age_value" name="age_value" placeholder="Write age" style="margin-bottom: 10px" type="text" />
-		    </div>
-                    <div class="controls col-md-2 "></div>
-		</div>
+  <div class="container">
+    <div class="row">  <!-- Main title -->
+      <div id="main_title"><div id="l_main_title">l_main_title</div></div>
+      <div id="main_subtitle"><div id="l_main_subtitle">l_main_subtitle</div></div>
+    </div>             <!-- Main title -->
+    <div class="row">  <!-- Other controls -->
+      <div class="col-md-5"></div>
+      <div class="col-md-2"><div id="info_instructions"><a href="#" id="info_1"><div id="l_instructions">l_instructions</div></a></div></div>
+      <div class="col-md-5"></div>
+    </div>             <!-- Other controls -->
+    <div class="row">  <!-- Main app -->
+      <div class="col-md-7"> <!-- Input -->
+        <div class="panel panel-primary"> <!-- Interface -->
+          <div class="panel-heading">
+            <div id="l_covariates">l_covariates</div>
+          </div>
+          <div class="panel-interface">
+            <div class="panel-body">
+              <div class="panel-covariates">
+                <div id="div_id_age" class="form-group required"> <!-- Age -->
+                  <label class="control-label col-md-7  requiredField"><div id="l_age">l_age</div></label>
+                  <div class="controls col-md-5 ">
+                    <input class="input-md  textinput textInput form-control" id="age_value" name="age_value" placeholder="Write age" style="margin-bottom: 10px" type="text" />
+                  </div>
+                </div>                                            <!-- Age -->
 
-		<div id="div_id_smoking" class="form-group required">
-		    <label class="control-label col-md-6  requiredField"><div id="l_smoking">l_smoking</div></label>
-		    <div class="controls col-md-6 "  style="margin-bottom: 10px">
-			<label class="radio-inline"><input type="radio" name="smoking" id="smoking_no" style="margin-bottom: 10px"><div id="l_no">l_no</div></label>
-			<label class="radio-inline"><input type="radio" name="smoking" id="smoking_yes" style="margin-bottom: 10px"><div id="l_yes">l_yes</div></label>
-		    </div>
-		</div>
+                <div id="div_id_smoking" class="form-group required"> <!-- Smoking -->
+                  <label class="control-label col-md-7  requiredField"><div id="l_smoking">l_smoking</div></label>
+                  <div class="controls col-md-5 "  style="margin-bottom: 10px">
+                    <label class="radio-inline"><input type="radio" name="smoking" id="smoking_no" style="margin-bottom: 10px"><div id="l_no">l_no</div></label>
+                    <label class="radio-inline"><input type="radio" name="smoking" id="smoking_yes" style="margin-bottom: 10px"><div id="l_yes">l_yes</div></label>
+                  </div>
+                </div>                                                 <!-- Smoking -->
 
-		<div id="div_id_diabetes" class="form-group required">
-		    <label class="control-label col-md-6  requiredField"><div id="l_diabetes">l_diabetes</div></label>
-		    <div class="controls col-md-6 "  style="margin-bottom: 10px">
-			<label class="radio-inline"><input type="radio" name="diabetes" id="diabetes_no" style="margin-bottom: 10px"><div id="l_no">l_no</div></label>
-			<label class="radio-inline"><input type="radio" name="diabetes" id="diabetes_yes" style="margin-bottom: 10px"><div id="l_yes">l_yes</div></label>
-		    </div>
-		</div>
+                <div id="div_id_diabetes" class="form-group required"> <!-- Diabetes -->
+                  <label class="control-label col-md-7  requiredField"><div id="l_diabetes">l_diabetes</div></label>
+                  <div class="controls col-md-5 "  style="margin-bottom: 10px">
+                    <label class="radio-inline"><input type="radio" name="diabetes" id="diabetes_no" style="margin-bottom: 10px"><div id="l_no">l_no</div></label>
+                    <label class="radio-inline"><input type="radio" name="diabetes" id="diabetes_yes" style="margin-bottom: 10px"><div id="l_yes">l_yes</div></label>
+                  </div>
+                </div>                                                 <!-- Diabetes -->
 
-		<div id="div_id_cv_history" class="form-group required">
-		    <label class="control-label col-md-6  requiredField"><div id="l_cv_history">l_cv_history</div></label>
-		    <div class="controls col-md-6 "  style="margin-bottom: 10px">
-			<label class="radio-inline"><input type="radio" name="cv_history" id="cv_history_no" style="margin-bottom: 10px"><div id="l_no">l_no</div></label>
-			<label class="radio-inline"><input type="radio" name="cv_history" id="cv_history_yes" style="margin-bottom: 10px"><div id="l_yes">l_yes</div></label>
-		    </div>
-		</div>
+                <div id="div_id_cv_history" class="form-group required"> <!-- ASCVD -->
+                  <label class="control-label col-md-7  requiredField"><div id="l_cv_history">l_cv_history</div></label>
+                  <div class="controls col-md-5 "  style="margin-bottom: 10px">
+                    <label class="radio-inline"><input type="radio" name="cv_history" id="cv_history_no" style="margin-bottom: 10px"><div id="l_no">l_no</div></label>
+                    <label class="radio-inline"><input type="radio" name="cv_history" id="cv_history_yes" style="margin-bottom: 10px"><div id="l_yes">l_yes</div></label>
+                  </div>
+                </div>                                                 <!-- ASCVD -->
 
+                <div id="div_id_sex" class="form-group required">
+                  <label class="control-label col-md-7  requiredField"><div id="l_sex">l_sex</div></label>
+                  <div class="controls col-md-5 "  style="margin-bottom: 10px">
+                    <label class="radio-inline"><input type="radio" name="sex" id="sex_female" style="margin-bottom: 10px"><div id="l_sex_female">l_sex_female</div></label>
+                    <label class="radio-inline"><input type="radio" name="sex" id="sex_male" style="margin-bottom: 10px"><div id="l_sex_male">l_sex_male</div></label>
+                  </div>
+                </div>
 
-		<div id="div_id_sex" class="form-group required">
-		    <label class="control-label col-md-6  requiredField"><div id="l_sex">l_sex</div></label>
-		    <div class="controls col-md-6 "  style="margin-bottom: 10px">
-			<label class="radio-inline"><input type="radio" name="sex" id="sex_female" style="margin-bottom: 10px"><div id="l_sex_female">l_sex_female</div></label>
-			<label class="radio-inline"><input type="radio" name="sex" id="sex_male" style="margin-bottom: 10px"><div id="l_sex_male">l_sex_male</div></label>
-		    </div>
-		</div>
+                <div id="div_id_htn" class="form-group required">
+                  <label class="control-label col-md-7  requiredField"><div id="l_htn">l_htn</div></label>
+                  <div class="controls col-md-5 "  style="margin-bottom: 10px">
+                    <label class="radio-inline"><input type="radio" name="htn" id="htn_no" style="margin-bottom: 10px"><div id="l_no">l_no</div></label>
+                    <label class="radio-inline"><input type="radio" name="htn" id="htn_yes" style="margin-bottom: 10px"><div id="l_yes">l_yes</div></label>
+                  </div>
+                </div>
 
-		<div id="div_id_htn" class="form-group required">
-		    <label class="control-label col-md-6  requiredField"><div id="l_htn">l_htn</div></label>
-		    <div class="controls col-md-6 "  style="margin-bottom: 10px">
-			<label class="radio-inline"><input type="radio" name="htn" id="htn_no" style="margin-bottom: 10px"><div id="l_no">l_no</div></label>
-			<label class="radio-inline"><input type="radio" name="htn" id="htn_yes" style="margin-bottom: 10px"><div id="l_yes">l_yes</div></label>
-		    </div>
-		</div>
+                <div id="div_id_colldl" class="form-group required">
+                  <label class="control-label col-md-7  requiredField"><div id="l_colldl">l_colldl</div></label>
+                  <div class="controls col-md-5 ">
+                    <input class="input-md  textinput textInput form-control" id="colldl_value" name="colldl_value" placeholder="Write LDL-c value" style="margin-bottom: 10px" type="text" />
+                  </div>
+                </div>
 
-		<div id="div_id_colldl" class="form-group required">
-		    <label class="control-label col-md-6  requiredField"><div id="l_colldl">l_colldl</div></label>
-		    <div class="controls col-md-4 ">
-			<input class="input-md  textinput textInput form-control" id="colldl_value" name="colldl_value" placeholder="Write LDL-c value" style="margin-bottom: 10px" type="text" />
-		    </div>
-                    <div class="controls col-md-2 "></div>
-		</div>
+                <div id="div_id_ami" class="form-group required">
+                  <label class="control-label col-md-7  requiredField"><div id="l_ami">l_ami</div></label>
+                  <div class="controls col-md-5 "  style="margin-bottom: 10px">
+                    <label class="radio-inline"><input type="radio" name="ami" id="ami_no" style="margin-bottom: 10px"><div id="l_no">l_no</div></label>
+                    <label class="radio-inline"><input type="radio" name="ami" id="ami_yes" style="margin-bottom: 10px"><div id="l_yes">l_yes</div></label>
+                  </div>
+                </div>
 
-		<div id="div_id_ami" class="form-group required">
-		    <label class="control-label col-md-6  requiredField"><div id="l_ami">l_ami</div></label>
-		    <div class="controls col-md-6 "  style="margin-bottom: 10px">
-			<label class="radio-inline"><input type="radio" name="ami" id="ami_no" style="margin-bottom: 10px"><div id="l_no">l_no</div></label>
-			<label class="radio-inline"><input type="radio" name="ami" id="ami_yes" style="margin-bottom: 10px"><div id="l_yes">l_yes</div></label>
-		    </div>
-		</div>
+                <div id="div_id_progressive" class="form-group required">
+                  <label id="progressive" class="control-label col-md-7  requiredField">
+                    <div id="l_progressive">l_progressive</div>
+                    <div class="description" id="l_desc_progressive">l_desc_progressive</div>
+                  </label>
+                  <div class="controls col-md-5 "  style="margin-bottom: 20px">
+                    <label class="radio-inline"><input type="radio" name="progressive" id="progressive_no" style="margin-bottom: 20px"><div id="l_no">l_no</div></label>
+                    <label class="radio-inline"><input type="radio" name="progressive" id="progressive_yes" style="margin-bottom: 20px"><div id="l_yes">l_yes</div></label>
+                  </div>
+                </div>
 
-		<div id="div_id_progressive" class="form-group required">
-		    <label id="progressive" class="control-label col-md-6  requiredField">
-                           <div id="l_progressive">l_progressive</div>
-                           <div class="description" id="l_desc_progressive">l_desc_progressive</div>
-                    </label>
-		    <div class="controls col-md-6 "  style="margin-bottom: 20px">
-			<label class="radio-inline"><input type="radio" name="progressive" id="progressive_no" style="margin-bottom: 20px"><div id="l_no">l_no</div></label>
-			<label class="radio-inline"><input type="radio" name="progressive" id="progressive_yes" style="margin-bottom: 20px"><div id="l_yes">l_yes</div></label>
-		    </div>
-		</div>
+                <div id="div_id_recent" class="form-group required">
+                  <label id="recent" class="control-label col-md-7  requiredField">
+                    <div id="l_recent">l_recent</div>
+                    <div class="description" id="l_desc_recent">l_desc_recent</div>
+                  </label>
+                  <div class="controls col-md-5 "  style="margin-bottom: 20px">
+                    <label class="radio-inline"><input type="radio" name="recent" id="recent_no" style="margin-bottom: 20px"><div id="l_no">l_no</div></label>
+                    <label class="radio-inline"><input type="radio" name="recent" id="recent_yes" style="margin-bottom: 20px"><div id="l_yes">l_yes</div></label>
+                  </div>
+                </div>
 
-		<div id="div_id_recent" class="form-group required">
-		    <label id="recent" class="control-label col-md-6  requiredField">
-                          <div id="l_recent">l_recent</div>
-                          <div class="description" id="l_desc_recent">l_desc_recent</div>
-                    </label>
-		    <div class="controls col-md-6 "  style="margin-bottom: 20px">
-			<label class="radio-inline"><input type="radio" name="recent" id="recent_no" style="margin-bottom: 20px"><div id="l_no">l_no</div></label>
-			<label class="radio-inline"><input type="radio" name="recent" id="recent_yes" style="margin-bottom: 20px"><div id="l_yes">l_yes</div></label>
-		    </div>
-		</div>
+                <div id="div_id_polivascular" class="form-group required">
+                  <label class="control-label col-md-7  requiredField" data-toggle="tooltip" data-placement="bottom" title="More than one vascular bed affected">
+                    <div id="l_polivascular">l_polivascular</div>
+                    <div class="description" id="l_desc_polivascular">l_desc_polivascular</div>
+                  </label>
+                  <div class="controls col-md-5 "  style="margin-bottom: 10px">
+                    <label class="radio-inline"><input type="radio" name="polivascular" id="polivascular_no" style="margin-bottom: 10px"><div id="l_no">l_no</div></label>
+                    <label class="radio-inline"><input type="radio" name="polivascular" id="polivascular_yes" style="margin-bottom: 10px"><div id="l_yes">l_yes</div></label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12" style="height:30px;"></div>
 
-		<div id="div_id_polivascular" class="form-group required">
-		    <label class="control-label col-md-6  requiredField" data-toggle="tooltip" data-placement="bottom" title="More than one vascular bed affected">
-                          <div id="l_polivascular">l_polivascular</div>
-                          <div class="description" id="l_desc_polivascular">l_desc_polivascular</div>
-                    </label>
-		    <div class="controls col-md-6 "  style="margin-bottom: 10px">
-			<label class="radio-inline"><input type="radio" name="polivascular" id="polivascular_no" style="margin-bottom: 10px"><div id="l_no">l_no</div></label>
-			<label class="radio-inline"><input type="radio" name="polivascular" id="polivascular_yes" style="margin-bottom: 10px"><div id="l_yes">l_yes</div></label>
-		    </div>
-		</div>
-
-		<div class="col-md-12" style="height:30px;"></div>
-
-		<div class="col-md-12">
-		    <button id="calculate_risk" class="btn btn-primary waves-effect waves-light"><div id="l_calculate_risk">l_calculate_risk</div></button>
-		    <button id="clean_button"class="btn btn-danger waves-effect waves-light"><div id="l_clean_button">l_clean_button</div></button>
-		</div>
-	    </div>
+              <div class="col-md-12">
+                <button id="calculate_risk" class="btn btn-primary waves-effect waves-light"><div id="l_calculate_risk">l_calculate_risk</div></button>
+                <button id="clean_button"class="btn btn-danger waves-effect waves-light"><div id="l_clean_button">l_clean_button</div></button>
+              </div>
             </div>
-	</div>
-	<!-- End COVARIATES -->
-	</div>
-	<div class="col-md-4"><!-- Begin RESULTS -->
-        <div id="panel-result">
-	<div class="panel panel-info">
-	    <!--<div class="panel-heading">Results</div>-->
-	    <div class="panel-body" id="result" ></div>
-	</div>
+          </div>
+        </div>                            <!-- Interface -->
+      </div>                 <!-- Input -->
+      <div class="col-md-5"> <!-- Output -->
+        <div class="row">
+          <div class="col-md-1 "></div>
+          <div class="col-md-10 ">
+            <div class="panel-results">
+              <div class="panel-body" id="result"></div>
+            </div>
+          </div>
+          <div class="col-md-1 "></div>
         </div>
-	</div><!-- End RESULTS -->
-	</div>
-	<div class="row">
-	    <div style="text-align: left; position: relative; top: 15px;  right: 15px; font-size: 1.1em; ">&copy; 2019 IDIAP Jordi Gol</div>
-	</div>
-</div>
+      </div>                 <!-- Output -->
+    </div>             <!-- Main app -->
+  </div>
+  <hr>
 
-<hr>
-
-<div id="logos">
-	<img src="resources/scaled3_idiap.png" />
-	<img src="resources/scaled3_imim.png" />
-	<img src="resources/scaled3_idibgi_new.png" />
-	<img src="resources/scaled3_ics.png" />
-</div>
+  <div id="logos">
+    <a class = "image-link" href="http://www.idiapjgol.org"><img src="resources/scaled3_idiap.png" /></a>
+    <a class = "image-link" href="http://www.imim.es"><img src="resources/scaled3_imim.png" /></a>
+    <a class = "image-link" href="http://idibgi.org"><img src="resources/scaled3_idibgi_new.png" /></a>
+    <a class = "image-link" href="http://http://ics.gencat.cat"><img src="resources/scaled3_ics.png" /></a>
+    <a class = "image-link" href="http://http://salutweb.gencat.cat"><img src="resources/scaled3_depsalut.png" /></a>
+    <a class = "image-link" href="http://www.colesterolgenetic.cat"><img src="resources/scaled3_xula.png" /></a>
+    <a class = "image-link" href="http://www.salutms.cat"><img src="resources/scaled3_csalut.png" /></a>
+  </div>
 
 </body>
 </html>
